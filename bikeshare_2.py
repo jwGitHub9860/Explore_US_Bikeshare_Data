@@ -20,15 +20,19 @@ def get_filters():
     city = ""
     while city != "chicago" and city != "new york city" and city != "washington":
         city = input("Please choose one of the following cities (chicago, new york city, washington): ")
+        city = city.lower()
 
     # get user input for month (all, january, february, ... , june)
     month = ""
     while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june" and month != "july" and month != "august" and month != "september" and month != "october" and month != "november" and month != "december":
         month = input("Please choose one of the following months (all, january, february, ... , june): ")
+        month = month.lower()
+
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day = ""
     while day != "all" and day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
         day = input("Choose a day of the week (all, monday, tuesday, ... sunday): ")
+        day = day.lower()
 
     print('-'*40)
     return city, month, day
@@ -45,7 +49,22 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
+    df = pd.read_csv(CITY_DATA[city])  # load data file into a dataframe
 
+    df['Start Time'] = pd.to_datetime(df['Start Time'])     # converts string to DateTime object (ex. String: 2001-12-24 12:38 ---> DateTime: 2001-12-24 12:38:00)
+
+    df['month'] = df['Start Time'].dt.month  # creates new column containing months of 'Start Time'
+    df['day'] = df['Start Time'].dt.weekday_name     # creates new column containing weekdays of 'Start Time'
+
+    if month != "all":
+        month_list = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+        month = month_list.index(month) + 1   # obtains number corresponding to month
+        df = df[df['month'] == month]  # filters by month
+
+    if day != "all":
+        day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        day = day_list.index(day) + 1   # obtains number corresponding to day
+        df = df[df['day'] == day]  # filters by day
 
     return df
 
@@ -57,6 +76,7 @@ def time_stats(df):
     start_time = time.time()
 
     # display the most common month
+    #df.value_counts()
 
 
     # display the most common day of week
@@ -76,7 +96,7 @@ def station_stats(df):
     start_time = time.time()
 
     # display most commonly used start station
-
+    #common_start_section = pd.dat
 
     # display most commonly used end station
 

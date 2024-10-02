@@ -66,6 +66,9 @@ def load_data(city, month, day):
         day = day_list.index(day) + 1   # obtains number corresponding to day
         df = df[df['day'] == day]  # filters by day
 
+    df['Start Clock Time'] = df['Start Time'].dt.time     # creates new column holding "Start CLOCK Times" (for 'def time_stats(df)' function)
+    df['End Clock Time'] = df['End Time'].dt.time       # creates new column holding "End CLOCK Times" (for 'def time_stats(df)' function)
+
     return df
 
 

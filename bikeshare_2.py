@@ -76,11 +76,12 @@ def time_stats(df):
     start_time = time.time()
 
     # display the most common month
-    #df.value_counts()
-    most_common_month = df['month'].mode()[0]   # finds most common month
+    df.value_counts()
+    most_common_month = df['month'].mode()   # finds most common month
 
     # display the most common day of week
-
+    df.value_counts()
+    most_common_day = df['day'].mode()
 
     # display the most common start hour
 

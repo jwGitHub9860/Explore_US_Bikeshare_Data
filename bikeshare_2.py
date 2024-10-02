@@ -77,7 +77,7 @@ def time_stats(df):
 
     # display the most common month
     #df.value_counts()
-
+    most_common_month = df['month'].mode()[0]   # finds most common month
 
     # display the most common day of week
 
@@ -94,6 +94,8 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
+
+
 
     # display most commonly used start station
     #common_start_section = pd.dat

@@ -66,8 +66,10 @@ def load_data(city, month, day):
         day = day_list.index(day) + 1   # obtains number corresponding to day
         df = df[df['day'] == day]  # filters by day
 
-    df['Start Clock Time'] = df['Start Time'].dt.time     # creates new column holding "Start CLOCK Times" (for 'def time_stats(df)' function)
-    df['End Clock Time'] = df['End Time'].dt.time       # creates new column holding "End CLOCK Times" (for 'def time_stats(df)' function)
+    # data columns for 'def time_stats(df)' function
+    df['Start Clock Time'] = df['Start Time'].dt.time     # creates new column holding "Start CLOCK Times"
+    df['End Clock Time'] = df['End Time'].dt.time       # creates new column holding "End CLOCK Times"
+    df['Start Hours'] = df['Start Clock Time'].dt.hour     # creates new column holding "Start Hours"
 
     return df
 
@@ -87,7 +89,8 @@ def time_stats(df):
     most_common_day = df['day'].mode()
 
     # display the most common start hour
-
+    df.value_counts()
+    most_common_start_hour = df['Start Hours'].mode()
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)

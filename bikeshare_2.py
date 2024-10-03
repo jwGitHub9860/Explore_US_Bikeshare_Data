@@ -62,7 +62,7 @@ def load_data(city, month, day):
         df = df[df['month'] == month]  # filters by month
 
     if day != "all":
-        df = df[df['day'] == day.title()]  # filters by day
+        df = df[df['day'] == day.title()]  # filters by day: produces weekday name & capitalizes first letter of weekday
 
     # code for 'def time_stats(df)' function
     df['Start Hours'] = df['Start Time'].dt.hour     # creates new column holding "Start Hours"
@@ -110,7 +110,7 @@ def station_stats(df):
     print("Most Common Start Station:", commonly_used_start_station)
 
     # display most commonly used end station
-
+    most_commonly_used_end_station = df['End Station'].mode()[0]
 
     # display most frequent combination of start station and end station trip
 

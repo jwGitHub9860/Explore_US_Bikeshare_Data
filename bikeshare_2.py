@@ -62,14 +62,10 @@ def load_data(city, month, day):
         df = df[df['month'] == month]  # filters by month
 
     if day != "all":
-        day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-        day = day_list.index(day) + 1   # obtains number corresponding to day
-        df = df[df['day'] == day]  # filters by day
+        df = df[df['day'] == day.title()]  # filters by day
 
-    # data columns for 'def time_stats(df)' function
-    df['Start Clock Time'] = df['Start Time'].dt.time     # creates new column holding "Start CLOCK Times"
-    df['End Clock Time'] = df['End Time'].dt.time       # creates new column holding "End CLOCK Times"
-    df['Start Hours'] = df['Start Clock Time'].dt.hour     # creates new column holding "Start Hours"
+    # code for 'def time_stats(df)' function
+    df['Start Hours'] = df['Start Time'].dt.hour     # creates new column holding "Start Hours"
 
     return df
 
@@ -81,16 +77,19 @@ def time_stats(df):
     start_time = time.time()
 
     # display the most common month
-    df.value_counts()
-    most_common_month = df['month'].mode()   # finds most common month
+    df['month'].value_counts()
+    most_common_month = df['month'].mode()[0]   # finds most common month
+    print("Most Common Month:", most_common_month)
 
     # display the most common day of week
-    df.value_counts()
-    most_common_day = df['day'].mode()
+    df['day'].value_counts()
+    most_common_day = df['day'].mode()[0]   # finds most common day of week
+    print("Most Common Day of the Week:", most_common_day)
 
     # display the most common start hour
-    df.value_counts()
-    most_common_start_hour = df['Start Hours'].mode()
+    df['Start Hours'].value_counts()
+    most_common_start_hour = df['Start Hours'].mode()[0]   # finds most common start hour
+    print("Most Common Start Hour:", most_common_start_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)

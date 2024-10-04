@@ -64,9 +64,6 @@ def load_data(city, month, day):
     if day != "all":
         df = df[df['day'] == day.title()]  # filters by day: produces weekday name & capitalizes first letter of weekday
 
-    # code for 'def time_stats(df)' function
-    df['Start Hours'] = df['Start Time'].dt.hour     # creates new column holding "Start Hours"
-
     return df
 
 
@@ -87,6 +84,7 @@ def time_stats(df):
     print("Most Common Day of the Week:", most_common_day)
 
     # display the most common start hour
+    df['Start Hours'] = df['Start Time'].dt.hour  # creates new column holding "Start Hours"
     df['Start Hours'].value_counts()
     most_common_start_hour = df['Start Hours'].mode()[0]   # finds most common start hour
     print("Most Common Start Hour:", most_common_start_hour)

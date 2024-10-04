@@ -148,7 +148,8 @@ def user_stats(df):
     start_time = time.time()
 
     # Display counts of user types
-
+    user_type_count = df['User Type'].count()
+    print("User Type Count: ", user_type_count)
 
     # Display counts of gender
 

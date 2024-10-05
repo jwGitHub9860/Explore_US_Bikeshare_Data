@@ -31,8 +31,8 @@ def get_filters():
     day = ""    # initializes "day"
     if filter_choice == 'month' or filter_choice == 'all':
         # get user input for month (all, january, february, ... , june)
-        while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june" and month != "july" and month != "august" and month != "september" and month != "october" and month != "november" and month != "december":
-            month = input("Please choose one of the following months (all, january, february, ... , june): ")
+        while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june":
+            month = input("Please choose one of the following month options (all, january, february, march, april, may, june): ")
             month = month.lower()
     if filter_choice == 'day' or filter_choice == 'all':
         # get user input for day of week (all, monday, tuesday, ... sunday)
@@ -158,16 +158,22 @@ def user_stats(df):
     print("User Type Count: ", user_type_count)
 
     # Display counts of gender
-    gender_count = df['Gender'].count()
-    print("Gender Count: ", gender_count)
+    try:
+        gender_count = df['Gender'].count()
+        print("Gender Count: ", gender_count)
+    except:
+        print("This file has no data about gender.")
 
     # Display earliest, most recent, and most common year of birth
-    earliest_birth_year = df['Birth Year'].min()
-    most_recent_birth_year = df['Birth Year'].max()
-    most_common_year = df['Birth Year'].mode()[0]
-    print("Earliest Birth Year: ", earliest_birth_year)
-    print("Most Recent Birth Year: ", most_recent_birth_year)
-    print("Most Common Year: ", most_common_year)
+    try:
+        earliest_birth_year = df['Birth Year'].min()
+        most_recent_birth_year = df['Birth Year'].max()
+        most_common_year = df['Birth Year'].mode()[0]
+        print("Earliest Birth Year: ", earliest_birth_year)
+        print("Most Recent Birth Year: ", most_recent_birth_year)
+        print("Most Common Year: ", most_common_year)
+    except:
+        print("This file has no data about birth years.")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)

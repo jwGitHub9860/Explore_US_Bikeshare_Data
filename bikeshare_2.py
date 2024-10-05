@@ -29,12 +29,12 @@ def get_filters():
 
     month = ""  # initializes "month"
     day = ""    # initializes "day"
-    if filter_choice != 'month' or filter_choice != 'all':
+    if filter_choice == 'month' or filter_choice == 'all':
         # get user input for month (all, january, february, ... , june)
         while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june" and month != "july" and month != "august" and month != "september" and month != "october" and month != "november" and month != "december":
             month = input("Please choose one of the following months (all, january, february, ... , june): ")
             month = month.lower()
-    if filter_choice != 'day' or filter_choice != 'all':
+    if filter_choice == 'day' or filter_choice == 'all':
         # get user input for day of week (all, monday, tuesday, ... sunday)
         while day != "all" and day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
             day = input("Choose a day of the week (all, monday, tuesday, ... sunday): ")

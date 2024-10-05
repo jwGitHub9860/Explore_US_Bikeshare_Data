@@ -18,21 +18,27 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city = ""
-    while city != "chicago" and city != "new york city" and city != "washington":
-        city = input("Please choose one of the following cities (chicago, new york city, washington): ")
+    while city != "chicago" and city != "new york city" and city != "washington":  # MUST CHOOSE CITY
+        city = input("Please choose data from one of the following cities (chicago, new york city, washington): ")
         city = city.lower()
 
-    # get user input for month (all, january, february, ... , june)
-    month = ""
-    while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june" and month != "july" and month != "august" and month != "september" and month != "october" and month != "november" and month != "december":
-        month = input("Please choose one of the following months (all, january, february, ... , june): ")
-        month = month.lower()
+    filter_choice = ""
+    while filter_choice != 'month' and filter_choice != 'day' and filter_choice != 'all' and filter_choice != 'none':
+        filter_choice = input("Please choose one of the following filters (month, day, all, none): ")
+        filter_choice = filter_choice.lower()
 
-    # get user input for day of week (all, monday, tuesday, ... sunday)
-    day = ""
-    while day != "all" and day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
-        day = input("Choose a day of the week (all, monday, tuesday, ... sunday): ")
-        day = day.lower()
+    month = ""  # initializes "month"
+    day = ""    # initializes "day"
+    if filter_choice != 'month' or filter_choice != 'all':
+        # get user input for month (all, january, february, ... , june)
+        while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june" and month != "july" and month != "august" and month != "september" and month != "october" and month != "november" and month != "december":
+            month = input("Please choose one of the following months (all, january, february, ... , june): ")
+            month = month.lower()
+    if filter_choice != 'day' or filter_choice != 'all':
+        # get user input for day of week (all, monday, tuesday, ... sunday)
+        while day != "all" and day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
+            day = input("Choose a day of the week (all, monday, tuesday, ... sunday): ")
+            day = day.lower()
 
     print('-'*40)
     return city, month, day

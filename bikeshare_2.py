@@ -31,13 +31,13 @@ def get_filters():
     day = ""    # initializes "day"
     if filter_choice == 'month' or filter_choice == 'all':
         # get user input for month (all, january, february, ... , june)
-        while month != "all" and month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june":
-            month = input("Please choose one of the following month options (all, january, february, march, april, may, june): ")
+        while month != "january" and month != "february" and month != "march" and month != "april" and month != "may" and month != "june":
+            month = input("Please choose one of the following month options (january, february, march, april, may, june): ")
             month = month.lower()
     if filter_choice == 'day' or filter_choice == 'all':
         # get user input for day of week (all, monday, tuesday, ... sunday)
-        while day != "all" and day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
-            day = input("Choose a day of the week (all, monday, tuesday, ... sunday): ")
+        while day != "monday" and day != "tuesday" and day != "wednesday" and day != "thursday" and day != "friday" and day != "saturday" and day != "sunday":
+            day = input("Choose a day of the week (monday, tuesday, wednesday, thursday, friday, saturday, sunday): ")
             day = day.lower()
 
     print('-'*40)
@@ -61,12 +61,12 @@ def load_data(city, month, day):
 
     df['month'] = df['Start Time'].dt.month  # creates new column containing months of 'Start Time'
     df['day'] = df['Start Time'].dt.weekday_name     # creates new column containing weekdays of 'Start Time'
-
-    if month != "":
+    print("Month: ", month)    # DELETE LATER
+    if month != "":     # if NO filters
         month_list = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
         month = month_list.index(month) + 1   # obtains number corresponding to month
         df = df[df['month'] == month]  # filters by month
-
+    print("Day: ", day)  # DELETE LATER
     if day != "":
         df = df[df['day'] == day.title()]  # filters by day: produces weekday name & capitalizes first letter of weekday
 

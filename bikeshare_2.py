@@ -62,12 +62,12 @@ def load_data(city, month, day):
     df['month'] = df['Start Time'].dt.month  # creates new column containing months of 'Start Time'
     df['day'] = df['Start Time'].dt.weekday_name     # creates new column containing weekdays of 'Start Time'
 
-    if month != "all":
+    if month != "":
         month_list = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
         month = month_list.index(month) + 1   # obtains number corresponding to month
         df = df[df['month'] == month]  # filters by month
 
-    if day != "all":
+    if day != "":
         df = df[df['day'] == day.title()]  # filters by day: produces weekday name & capitalizes first letter of weekday
 
     return df

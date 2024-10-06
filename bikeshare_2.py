@@ -178,6 +178,20 @@ def user_stats(df):
     print('-'*40)
 
 
+def raw_data(df):   # shows raw data
+    print('\nCalculating User Stats...\n')
+    start_time = time.time()
+
+    show_raw_data = input("Do you want to see 5 lines of raw data (y or n): ").lower()
+    while show_raw_data == "y" and show_raw_data != "n":
+        show_raw_data = input("Do you want to see another 5 lines of raw data (y or n): ").lower()
+        if show_raw_data == "y":
+            print(df.head())
+
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-' * 40)
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -187,6 +201,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        raw_data(df)   # shows raw data
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':

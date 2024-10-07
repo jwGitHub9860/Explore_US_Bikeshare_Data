@@ -184,7 +184,7 @@ def raw_data(df):   # shows raw data
     while show_raw_data != "y" and show_raw_data != "n":
         show_raw_data = input("Please choose one of the following options (y or n): ").lower()
     while show_raw_data == "y":
-        if row >= len(df):
+        if row >= len(df):  # checks if end of raw data is reached
             print("These are the last 5 lines of data.")
             break
         print(df.iloc[row:column])

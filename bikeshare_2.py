@@ -181,7 +181,7 @@ def raw_data(df):   # shows raw data
     row = 0    # initial row
     column = 5  # initial column
     show_raw_data = input("Do you want to see 5 lines of raw data (y or n): ").lower()
-    while show_raw_data != "y" and show_raw_data != "n":    # Same while loop
+    while show_raw_data != "y" and show_raw_data != "n":
         show_raw_data = input("Please choose one of the following options (y or n): ").lower()
     while show_raw_data == "y":
         if row >= len(df):
@@ -192,7 +192,7 @@ def raw_data(df):   # shows raw data
         if show_raw_data == "n":
             break
         elif show_raw_data != "y" and show_raw_data != "n":
-            while show_raw_data != "y" and show_raw_data != "n":    # Same while loop
+            while show_raw_data != "y" and show_raw_data != "n":
                 show_raw_data = input("Please choose one of the following options (y or n): ").lower()
         else:   # if show_raw_data == "y"
             row += 5
